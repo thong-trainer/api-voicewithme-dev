@@ -1,0 +1,16 @@
+{
+  "name": "api-voicewithme",
+  "version": "1.0.0",
+  "description": "This is an api use to support VoiceWithMe app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ley Kamthong",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/speech": "^2.0.0",
+    "@google-cloud/translate": "^1.1.0",
+    "express": "^4.16.3"
+  }
+}
