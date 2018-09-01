@@ -235,6 +235,67 @@ app.post('/api/feedback', async function(req, res, next){
 });
 
 // ==========================================================================
+// Contact API ===============================================================
+// ==========================================================================
+// create new contact
+app.post('/api/contact', async function(req, res, next){
+  const secret = req.query.secret;
+  console.log(secret);
+
+  if (secret == undefined) {
+    res.status(500).json({
+      message: "Bad Query",
+      success: false
+    });
+    return;
+  }
+
+  if(secret != "b5ed678f64a4")
+  {
+    res.status(500).json({
+      message: "Secret ID not found!",
+      success: false
+    });
+    return;
+  }
+
+  try {
+    var contact = Contact(req.body);
+    var result = await contact.save();
+    res.send(result);
+  } catch(err){
+    res.status(500).json(err);
+  }
+
+});
+
+// get contacts
+app.get('/api/contact/all', async function(req, res, next){
+
+  const secret = req.query.secret;
+
+  if (secret == undefined) {
+    res.status(500).json({
+      message: "Bad Query",
+      success: false
+    });
+    return;
+  }
+
+  if(secret != "b5ed678f64a4")
+  {
+    res.status(500).json({
+      message: "Secret ID not found!",
+      success: false
+    });
+    return;
+  }
+
+  var contact = await Contact.find().sort({createdAt: -1}).limit(30);;
+  res.send(contact);
+
+});
+// ==========================================================================
 // MIDDLEWARE ===============================================================
 // ==========================================================================
 // catch 404 errors and forward them to error handling middleware
