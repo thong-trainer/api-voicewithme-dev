@@ -226,6 +226,14 @@ app.get('/api/item/:parentId', async function(req, res, next) {
   res.send(parents);
 });
 
+// create a new feedback
+app.post('/api/feedback', async function(req, res, next){
+	var feedback = Feedback(req.body);
+	feedback._id = mongoose.Types.ObjectId();
+	var result = await feedback.save();
+  	res.send(result);
+});
+
 // ==========================================================================
 // MIDDLEWARE ===============================================================
 // ==========================================================================
