@@ -1,0 +1,404 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>VoiceWithMe</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8" />
+	<meta name='keywords' content='speech translation, khmer translation, speech-to-speech'>
+	<meta name="apple-itunes-app" content="app-id=1404745554">
+	<meta name="google-play-app" content="app-id=com.saly_express.VoiceWithMe">
+	<meta name="description" content="It is a first speech translation application in Cambodia, that has ability to translate from speech into different languages such as Khmer, English, Chinese and Thai.">
+
+	
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="assets/smart-banner/smart-app-banner.css">
+	<link rel="apple-touch-icon" href="logo.png">
+	<link rel="android-touch-icon" href="logo.png" />
+	<link rel="windows-touch-icon" href="logo.png" />
+	<link rel="shortcut icon" href="logo.png" />
+	<style type="text/css">
+		* {
+			box-sizing: border-box;
+		}
+
+		body,
+		input,
+		textarea {
+			font-family: Khmer OS;
+		}
+
+		form {
+			color: black;
+		}
+	</style>
+
+	<script type="text/javascript" src="assets/smart-banner/smart-app-banner.js"></script>
+
+	<script>
+		banner = undefined;
+		function run(force) {
+			var n = document.querySelector('.smartbanner');
+			if (n) {
+				n.parentNode.removeChild(n);
+			}
+			new SmartBanner({
+				daysHidden: 15, // days to hide banner after close button is clicked (defaults to 15)
+				daysReminder: 90, // days to hide banner after "VIEW" button is clicked (defaults to 90)
+				appStoreLanguage: 'us', // language code for the App Store (defaults to user's browser language)
+				title: 'VoiceWithMe',
+				author: 'Ley Kamthong',
+				button: 'OPEN',
+				force: force
+			});
+		}
+
+		function getMobileOperatingSystem() {
+			var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+			// Windows Phone must come first because its UA also contains "Android"
+			// if (/windows phone/i.test(userAgent)) {
+			//     return "windows";
+			// }
+
+			if (/android/i.test(userAgent)) {
+				return "android";
+			}
+
+			// iOS detection from: http://stackoverflow.com/a/9039885/177710
+			if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+				return "ios";
+			}
+
+			return "unknown";
+		}
+
+		function clickMe() {
+			var device = getMobileOperatingSystem();
+			if (device == "unknown") {
+				// window.location = 'https://itunes.apple.com/app/id1404745554';
+			}
+			else {
+				run(device);
+				document.getElementById("aDownload").href = (device == "android" ? "https://play.google.com/store/apps/details?id=com.saly_express.VoiceWithMe" : (device == "ios" ? "https://l.facebook.com/l.php?u=https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fvoicewithme%2Fid1404745554%3Fls%3D1%26mt%3D8&h=AT2-XSCKstpfYZ0F6uRVERPSABosvjOJyOwigrjRYlb8BHGFgQIkCch4GVuDP0hppCrbXCdGZXAAze1xgvpi2uKVKHNohOFacBOd_i_PaqcRoV9n6FrRoQSmNTE_AG1DDnEDaw" : "http://voicewithme.com"));
+			}
+		}
+	</script>
+</head>
+
+<body onload="clickMe()">
+
+	<!-- Nav -->
+<!-- 	<nav id="menu">
+		<ul class="links">
+			<li>
+				<a href="#">Home</a>
+			</li>
+			<li>
+				<a href="user_manual_eng.html">User Manual</a>
+			</li>
+		</ul>
+	</nav> -->
+
+	<!-- Banner -->
+	<section id="banner">
+		<header id="header" class="alt">
+			<div class="logo">
+
+			</div>
+<!-- 			<a href="index_kh.html">
+				<img src="images/flag-cambodia.png" style="width: 20px; height: 15px; border: 1px solid lightgrey;" />
+				<span> ភាសារខ្មែរ</span>
+			</a>
+			<a href="#menu"></a> -->
+		</header>
+		<div class="inner">
+			<header>
+				<h1>VoiceWithMe</h1>
+				<p>It was created free for everyone who has never learned foreign languages
+					<br/>to help you to easy communicate in a simple way (speech-to-speech).</p>
+			</header>
+			<a href="#" class="button big scrolly" id="aDownload" >Download</a>
+		</div>
+	</section>
+
+	<!-- Main -->
+	<div id="main">
+
+		<!-- Section -->
+		<section class="wrapper style1">
+			<div class="inner">
+				<!-- 2 Columns -->
+				<div class="flex flex-2">
+					<div class="col col1">
+						<div class="image round fit">
+							<a href="#" class="link">
+								<img src="images/voicewithme_logo.jpg" alt="" />
+							</a>
+						</div>
+					</div>
+					<div class="col col2">
+						<h3>What is VoiceWithMe?</h3>
+						<p>It is a first speech translation application in Cambodia, that has ability to translate from speech into different
+							languages such as Khmer, English, Chinese and Thai. With user-friendly platform, just click on language button to
+							translate. Moreover, it automatic keep your conversation in the history option then can recovery every time you want.</p>
+						<a href="#" class="button">Learn More</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section -->
+		<section class="wrapper style2">
+			<div class="inner">
+				<div class="flex flex-2">
+					<div class="col col2">
+						<h3>Our Video Guide</h3>
+						<p>This video will explain you about the process of people who use VoiceWithMe to build communication with people who
+							speak different languages. After watching the video, please download it to make yourself confidence to conversation
+							with foreigners.</p>
+						<a href="#" class="button">Learn More</a>
+					</div>
+					<div class="col col1 first">
+					<iframe width="300" height="200" src="https://www.youtube.com/embed/KBYs_2ZInSw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+						<!-- <div class="image round fit">
+							<a href="generic.html" class="link">
+								<img src="images/pic02.jpg" alt="" />
+							</a>
+						</div> -->
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section -->
+		<section class="wrapper style1">
+			<div class="inner">
+				<header class="align-center">
+					<h2>Our Features</h2>
+
+				</header>
+				<div class="flex flex-3">
+					<div class="col align-center">
+						<div class="image" style="border-radius: 70px">
+							<img src="images/pic01.jpg" style="border-radius: 70px;width: 100%;" alt="" />
+						</div>
+						<br/>
+						<br/>
+						<p>You can edit on your text, if your speak has something wrong. So it will update your translation based on your text.</p>
+						<a href="#" class="button">Learn More</a>
+					</div>
+					<div class="col align-center">
+						<div class="image" style="border-radius: 70px">
+							<img src="images/pic02.jpg" alt="" style="border-radius: 70px; width: 100%;" />
+						</div>
+						<br/>
+						<br/>
+						<p>On the menu button, you can switch languages, check your history or feedback to us if the app has some issues.</p>
+						<a href="#" class="button">Learn More</a>
+					</div>
+					<div class="col align-center">
+						<div class="image" style="border-radius: 70px">
+							<img src="images/pic03.jpg" alt="" style="border-radius: 70px; width: 100%;" />
+						</div>
+						<br/>
+						<br/>
+						<p>Please click on the language button to speak. After done, click on the flag icon to translate, but if you want to reject
+							it, click on the cancel icon.</p>
+						<a href="#" class="button">Learn More</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+				<section class="wrapper style2" >
+			<div class="inner">
+				<header class="align-center">
+					<h2>Our Team</h2>
+
+				</header>
+				<div class="flex flex-3">
+					<div class="col align-center">
+						<div class="image" style="border-radius: 70px">
+							<img src="images/TeamMember/ley_kamthong.jpg" style="border-radius: 70px;width: 100%;" alt="" />
+						</div>
+						<br/>
+						<br/>
+							<a href="https://www.facebook.com/leykamthong" target="_blank">
+							<h4>Ley Kamthong
+							<br/>
+							<span style="font-weight: normal; font-size: 18px">Director</span>
+						</h4>
+						</a>
+					</div>
+					<div class="col align-center">
+						<div class="image" style="border-radius: 70px">
+							<img src="images/TeamMember/Yun_Sopheap.jpg" alt="" style="border-radius: 70px; width: 100%;" />
+						</div>
+						<br/>
+						<br/>
+						<a href="https://www.facebook.com/yun.sopheap.16" target="_blank">
+			<h4>Yun Sopheap
+							<br/>
+							<span style="font-weight: normal; font-size: 18px">Multimedia Producer</span>
+						</h4>
+						</a>
+					</div>
+					<div class="col align-center">
+						<div class="image" style="border-radius: 70px">
+							<img src="images/TeamMember/Tit_Vandy.jpg" alt="" style="border-radius: 70px; width: 100%;" />
+						</div>
+						<br/>
+						<br/>
+						<a href="https://www.facebook.com/tith.vandy.3" target="_blank">
+			<h4>Tit Vandy
+							<br/>
+							<span style="font-weight: normal; font-size: 18px">Web Developer</span>
+						</h4>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+<!-- 
+		</section>
+		<section class="wrapper style2">
+			<div class="inner">
+				<header class="align-center">
+					<h2>
+						<u>Our Team Member</u>
+					</h2>
+				</header>
+				<div class="align-center">
+					<div class="team-box align-center">
+						<div>
+							<img src="images/TeamMember/Ley_Kamthong.jpg" alt="" />
+							<br/>
+							<br/>
+						</div>
+						<h4>Ley Kamthong
+							<br/>
+							<span>Director</span>
+						</h4>
+					</div>
+
+					<div class="team-box align-center">
+						<div>
+							<img src="images/TeamMember/Yun_Sopheap.jpg" alt="" />
+							<br/>
+							<br/>
+						</div>
+						<h4>Yun Sopheap
+							<br/>
+							<span>Multimedia Producer</span>
+						</h4>
+					</div>
+					<div class="team-box align-center">
+						<div>
+							<img src="images/TeamMember/Tit_Vandy.jpg" alt="" />
+							<br/>
+							<br/>
+						</div>
+						<h4>Tit Vandy
+							<br/>
+							<span>Web Developer</span>
+						</h4>
+					</div>
+				</div>
+			</div>
+		</section> -->
+
+		<section class="wrapper " style="background-color: #566987">
+			<div class="inner">
+				<header class="align-center">
+					<h2 style="color: white;">Contact us</h2>
+				</header>
+			</div>
+			<div class="inner form-box">
+				<form id="frmFeedback">
+					<div class="row uniform">
+						<div id="myalert" class="12u$" style="text-align: center;display: none;">
+							<div class="alert success">
+								<!-- <span class="closebtn">&times;</span> -->
+								Your message has been sent&nbsp; &#10004;
+							</div>
+						</div>
+						<div class="6u 12u$(xsmall)">
+							<input type="text" name="name" id="name" placeholder="Name" required/>
+						</div>
+						<div class="6u$ 12u$(xsmall)">
+							<input type="email" name="email" id="email" placeholder="Email" required/>
+						</div>
+						<div class="12u$">
+							<textarea name="description" id="description" placeholder="Enter your message" rows="6" required></textarea>
+						</div>
+						<!-- Break -->
+						<div class="12u$" style="float: left;">
+							<ul class="actions">
+								<li>
+									<!-- <button id="btnSubmit">Submit</button> -->
+									<input type="submit" value="Submit" />
+								</li>
+							</ul>
+						</div>
+					</div>
+				</form>
+			</div>
+		</section>
+	</div>
+
+	<!-- Footer -->
+	<footer id="footer" style="background-color: #f7f9fc">
+		<div class="copyright">
+			<ul class="icons">
+				<li>
+					<a href="https://www.facebook.com/voicewithme/" class="icon fa-facebook" target="_blank">
+						<span class="label">Facebook</span>
+					</a>
+				</li>
+			</ul>
+			<p>&copy; Untitled. All rights reserved. Design:
+				<a href="#">VoiceWithMe Innovation Group</a>.</p>
+		</div>
+	</footer>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+	<script>
+		$(document).ready(function () {
+			$("#frmFeedback").submit(function (e) {
+				e.preventDefault();
+				var val = $("input[type=submit][clicked=true]").val();
+				var dataArray = {};
+				$(this).serializeArray().forEach(function (x) { dataArray[x.name] = x.value; });
+				$.ajax({
+					url: "http://voicewithme.ml:8090/api/contact?secret=b5ed678f64a4",
+					type: "POST",
+					dataType: 'json',
+					data: dataArray,
+					success: function (data) {
+						$("#frmFeedback").trigger('reset');
+						$("#myalert").fadeIn('slow');
+						setTimeout(function () {
+							$("#myalert").fadeOut('slow');
+						}, 7000);
+					},
+					error: function (xhr, textStatus) {
+						console.log(xhr.status.toString());
+					}
+				});
+
+			});
+		});
+	</script>
+
+</body>
+
+</html>
