@@ -240,7 +240,6 @@ app.post('/api/feedback', async function(req, res, next){
 // create new contact
 app.post('/api/contact', async function(req, res, next){
   const secret = req.query.secret;
-  console.log(secret);
 
   if (secret == undefined) {
     res.status(500).json({
@@ -263,6 +262,45 @@ app.post('/api/contact', async function(req, res, next){
     var contact = Contact(req.body);
     var result = await contact.save();
     res.send(result);
+  } catch(err){
+    res.status(500).json(err);
+  }
+
+});
+
+// update contact by id
+app.put('/api/contact/:id', async function(req, res, next){
+  const secret = req.query.secret;
+
+  if (secret == undefined) {
+    res.status(500).json({
+      message: "Bad Query",
+      success: false
+    });
+    return;
+  }
+
+  if(secret != "b5ed678f64a4")
+  {
+    res.status(500).json({
+      message: "Secret ID not found!",
+      success: false
+    });
+    return;
+  }
+
+
+  try {
+    const contact = await Contact.findByIdAndUpdate({_id: req.params.id}, req.body);
+    if(contact) {
+      Contact.findById(req.params.id).then(function(data){
+         res.send(data);
+      });
+    } else {
+      res.status(500).json({
+       message: 'Id not found', success: false
+      });
+    }
   } catch(err){
     res.status(500).json(err);
   }
