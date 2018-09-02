@@ -307,6 +307,41 @@ app.put('/api/contact/:id', async function(req, res, next){
 
 });
 
+
+// delete contact by id
+app.delete('/api/contact/:id', async function(req, res, next){
+  const secret = req.query.secret;
+
+  if (secret == undefined) {
+    res.status(500).json({
+      message: "Bad Query",
+      success: false
+    });
+    return;
+  }
+
+  if(secret != "b5ed678f64a4")
+  {
+    res.status(500).json({
+      message: "Secret ID not found!",
+      success: false
+    });
+    return;
+  }
+
+
+  try {
+    await Contact.remove({_id: req.params.id});
+    res.status(200).json({
+      message: "Delete successful!",
+      success: true
+    });
+  } catch(err){
+    res.status(500).json(err);
+  }
+
+});
+
 // get contacts
 app.get('/api/contact/all', async function(req, res, next){
 
@@ -329,7 +364,34 @@ app.get('/api/contact/all', async function(req, res, next){
     return;
   }
 
-  var contact = await Contact.find().sort({createdAt: -1}).limit(30);;
+  var contacts = await Contact.find().sort({createdAt: -1}).limit(30);;
+  res.send(contacts);
+
+});
+
+// get contacts by id
+app.get('/api/contact/id/:id', async function(req, res, next){
+
+  const secret = req.query.secret;
+
+  if (secret == undefined) {
+    res.status(500).json({
+      message: "Bad Query",
+      success: false
+    });
+    return;
+  }
+
+  if(secret != "b5ed678f64a4")
+  {
+    res.status(500).json({
+      message: "Secret ID not found!",
+      success: false
+    });
+    return;
+  }
+
+  var contact = await Contact.findById(req.params.id);
   res.send(contact);
 
 });
