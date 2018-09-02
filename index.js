@@ -396,6 +396,65 @@ app.get('/api/contact/id/:id', async function(req, res, next){
 
 });
 // ==========================================================================
+// TEST CLOUD API ===============================================================
+// ==========================================================================
+app.get('/api/test/translation', async function(req, res, next){
+  const text = 'Hello, world!';
+  const target = 'km';
+  translate
+    .translate(text, target)
+    .then(results => {
+      const translation = results[0];
+      const result = {
+        "text": text,
+        "translation": translation
+      }
+      console.log("Response: ", result);
+      res.send(result);
+    })
+    .catch(err => {
+      console.error('ERROR:', err);
+    });
+});
+
+app.get('/api/test/speech-to-text', async function(req, res, next){
+  // The name of the audio file to transcribe
+  const fileName = './resources/audio.wav';
+
+  // Reads a local audio file and converts it to base64
+  const file = fs.readFileSync(fileName);
+  const audioBytes = file.toString('base64');
+
+  // The audio file's encoding, sample rate in hertz, and BCP-47 language code
+  const audio = {
+    content: audioBytes,
+  };
+  const config = {
+    encoding: 'LINEAR16',
+    sampleRateHertz: 16000,
+    languageCode: 'en-US',
+  };
+  const request = {
+    audio: audio,
+    config: config,
+  };
+
+  // Detects speech in the audio file
+  clientSpeechToText
+    .recognize(request)
+    .then(data => {
+      const response = data[0];
+      const transcription = response.results
+        .map(result => result.alternatives[0].transcript)
+        .join('\n');
+      console.log(`Transcription: ${transcription}`);
+      res.send(transcription);
+    })
+    .catch(err => {
+      console.error('ERROR:', err);
+    });
+});
+// ==========================================================================
 // MIDDLEWARE ===============================================================
 // ==========================================================================
 // catch 404 errors and forward them to error handling middleware
