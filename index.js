@@ -159,7 +159,12 @@ app.post('/api/speech-to-text', function(req, res, next) {
           console.log(response);
           const transcription = response.results.map(result => result.alternatives[0].transcript).join('\n');
           console.log(`Transcription: `, transcription);
-          res.send({"inputText": transcription, "translatedText": null, "targetTranslation": target, "inputSpeechUrl": req.file.path});
+          res.send({
+            "inputText": transcription,
+            "translatedText": null,
+            "sourceLanguage": target,
+            "targetTranslation": target,
+            "inputSpeechUrl": req.file.path});
         }).catch(err => {
           console.error('ERROR:', err);
         })
